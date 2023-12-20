@@ -2,6 +2,8 @@ const http = require("http");
 const fs = require("fs");
 const url = require("url");
 const minimist = require("minimist");
+const args = minimist(process.argv.slice(2));
+const port = args.port || 5000;
 
 let homeContent = "";
 let projectContent = "";
@@ -28,9 +30,9 @@ fs.readFile("registration.html",(err,registration)=>{
 });
 
 http.createServer((request, response) => {
-    let url = request.url;
+      let urlPath = url.parse(request.url).pathname;
     response.writeHeader(200, { "Content-Type": "text/html" });
-    switch (url) {
+    switch ( urlPath ) {
        case "/project":
         response.write(projectContent);
         response.end();
@@ -47,4 +49,6 @@ http.createServer((request, response) => {
             break;
     }
   })
-  .listen(5000);
+  .listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+  });
