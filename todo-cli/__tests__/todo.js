@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const todoList = require("../todo");
 
 const { add, markAsComplete, all, dueToday, dueLater, overdue } = todoList();
@@ -29,8 +30,13 @@ describe("Todo test suite", () => {
   });
 
   test("should mark a todo as complete", () => {
+    // Ensure the todo is initially marked as incomplete
     expect(all[0].completed).toBe(false);
+
+    // Mark the todo as complete
     markAsComplete(0);
+
+    // Ensure the todo is now marked as complete
     expect(all[0].completed).toBe(true);
   });
 
