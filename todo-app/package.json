@@ -7,7 +7,7 @@
         "start": "nodemon -e js,ejs",
         "start:prod": "node index.js ",
         "test": "NODE_ENV=test jest --detectOpenHandles",
-        "pretest": "NODE_ENV=test npx sequelize-cli db:drop && NODE_ENV=test npx sequelize-cli db:cr
+        "pretest": "NODE_ENV=test npx sequelize-cli db:drop && NODE_ENV=test npx sequelize-cli db:create",
         "prepare": "husky install"
     },
     "author": "mamatha",
